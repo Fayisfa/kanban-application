@@ -10,7 +10,7 @@
 <body>
     <div id="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <label class="me-auto">Welcome {username}</label>
+            <label class="me-auto">Welcome {{user}}</label>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mb-2 mb-lg-0 me-auto">
                     <li class="nav-item">
@@ -24,7 +24,9 @@
         <!-- Table -->
         <div class="container mt-3">
             <div class="row">
-                <div class="col-lg-8 mx-auto"> <!-- Centering the table -->
+                {%if users%}
+                <div class="col-lg-8 mx-auto"> 
+                    <!-- Centering the table -->
                     <table class="table">
                         <thead class="table-dark">
                             <tr>
@@ -35,36 +37,25 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                            {%for key,value in users.items()%}
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>3</td>
+                                <th scope="row">{{key}}</th>
+                                <td>value[0] </td>
+                                <td>value[1]</td>
                                 <td>
                                     <button class="btn btn-success" type="button">View</button>||
                                     <button class="btn btn-danger" type="button">Delete</button>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>
-                                    <button class="btn btn-success" type="button">View</button>||
-                                    <button class="btn btn-danger" type="button">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>
-                                    <button class="btn btn-success" type="button">View</button>||
-                                    <button class="btn btn-danger" type="button">Delete</button>
-                                </td>
-                            </tr>
+                            
+                            {%endfor%}
                         </tbody>
                     </table>
                 </div>
+                {%else%}
+                <h3>No user available</h3>
+                {%endif%}
             </div>
         </div>
     </div>
